@@ -54,6 +54,21 @@ class Wp_Gds_Cmp_Admin {
 
 	}
 
+	public function register_settings() {
+		register_setting('general', 'cmp_gtm_id', 'esc_attr');
+		add_settings_field('cmp_gtm_id', '<label for="cmp_gtm_id">' . __('GTM ID', 'cmp_gtm_id') . '</label>', __NAMESPACE__ . '\\fields_html', 'general');
+
+		function fields_html()
+		{
+			?>
+			<input type="text" id="cmp_gtm_id" name="cmp_gtm_id" class="regular-text code" value="<?php echo get_option('cmp_gtm_id', ''); ?>" />
+			<p class="description" id="tagline-description">Google Tag Manager ID</p>
+			<?php
+		}
+	}
+
+
+
 	/**
 	 * Register the stylesheets for the admin area.
 	 *
