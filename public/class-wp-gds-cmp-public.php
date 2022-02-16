@@ -84,7 +84,6 @@ class Wp_Gds_Cmp_Public {
 	}
 
 	public function render_tags() {
-		echo "<!--- TAAAGGG -->";
 		// if no tag manager id is set, do nothing
 		if (!$gtm_id = get_option('cmp_gtm_id', '')) {
 			return;
@@ -132,7 +131,9 @@ class Wp_Gds_Cmp_Public {
 	}
 
 	private function render_tag($gtm_id, $consentSettings) {
+
 		?>
+		<!-- Start GDS CMP -->
 		<style>
 		/* Prevent flash of unhydrated component. */
 		gds-consent-manager:not(.hydrated) {
@@ -174,6 +175,9 @@ class Wp_Gds_Cmp_Public {
 		})()
 		</script>
 		<!-- End Google Tag Manager -->
+		<!-- End GDS CMP -->
+
+
 		<?php
 	}
 }
