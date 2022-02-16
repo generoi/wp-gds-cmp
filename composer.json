@@ -1,0 +1,28 @@
+{
+  "name": "generoi/wp-gds-cmp",
+  "type": "wordpress-plugin",
+  "license": "MIT",
+  "description": "Genero Design System CMP",
+  "homepage": "http://www.generogrowth.com",
+  "authors": [
+    {
+      "name": "Christoffer Björkskog",
+      "email": "toffe@genero.fi"
+    }
+  ],
+  "keywords": [
+    "wordpress"
+  ],
+  "support": {
+    "issues": "https://github.com/generoi/wp-gds-cmp/issues"
+  },
+  "require": {
+    "php": ">=7.2.0",
+    "composer/installers": "~1.0"
+  },
+  "archive" : {
+    "exclude": [
+      ".gitignore"
+    ]
+  }
+}
