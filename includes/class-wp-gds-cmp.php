@@ -7,7 +7,7 @@
  * public-facing side of the site and the admin area.
  *
  * @link       https://generogrowth.com/
- * @since      1.0.0
+ * @since      1.0.0-alpha
  *
  * @package    Wp_Gds_Cmp
  * @subpackage Wp_Gds_Cmp/includes
@@ -22,7 +22,7 @@
  * Also maintains the unique identifier of this plugin as well as the current
  * version of the plugin.
  *
- * @since      1.0.0
+ * @since      1.0.0-alpha
  * @package    Wp_Gds_Cmp
  * @subpackage Wp_Gds_Cmp/includes
  * @author     Genero <christoffer.bjorkskog@genero.fi>
@@ -138,7 +138,6 @@ class Wp_Gds_Cmp {
 	private function set_locale() {
 
 		$plugin_i18n = new Wp_Gds_Cmp_i18n();
-
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 
 	}

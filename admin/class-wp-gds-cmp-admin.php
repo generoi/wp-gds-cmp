@@ -4,7 +4,7 @@
  * The admin-specific functionality of the plugin.
  *
  * @link       https://generogrowth.com/
- * @since      1.0.0
+ * @since      1.0.0-alpha
  *
  * @package    Wp_Gds_Cmp
  * @subpackage Wp_Gds_Cmp/admin

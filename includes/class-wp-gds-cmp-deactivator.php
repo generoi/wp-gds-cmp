@@ -4,7 +4,7 @@
  * Fired during plugin deactivation
  *
  * @link       https://generogrowth.com/
- * @since      1.0.0
+ * @since      1.0.0-alpha
  *
  * @package    Wp_Gds_Cmp
  * @subpackage Wp_Gds_Cmp/includes
@@ -15,7 +15,7 @@
  *
  * This class defines all code necessary to run during the plugin's deactivation.
  *
- * @since      1.0.0
+ * @since      1.0.0-alpha
  * @package    Wp_Gds_Cmp
  * @subpackage Wp_Gds_Cmp/includes
  * @author     Genero <christoffer.bjorkskog@genero.fi>
