@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The public-facing functionality of the plugin.
  *
@@ -9,6 +8,8 @@
  * @package    Wp_Gds_Cmp
  * @subpackage Wp_Gds_Cmp/public
  */
+
+include_once 'traits/HasLanguageConfigs.php';
 
 /**
  * The public-facing functionality of the plugin.
@@ -21,7 +22,7 @@
  * @author     Genero <christoffer.bjorkskog@genero.fi>
  */
 class Wp_Gds_Cmp_Public {
-
+	use HasLanguageConfigs;
 	/**
 	 * The ID of this plugin.
 	 *
@@ -88,43 +89,26 @@ class Wp_Gds_Cmp_Public {
 			return;
 		}
 
+		$activeLanguages = [];
+		if (function_exists('pll_languages_list')) {
+			$languages = pll_languages_list(array('fields' => array()));
+			d($languages);
+			foreach($languages as $key=>$obj) {
+				$activeLanguages[$obj->locale] = [
+					"language" => $obj->name,
+					"languagecode" => $obj->slug,
+					"locale" => $obj->locale
+				];
+			}
+			d($activeLanguages);
+		}
+
+		// @TODO: sätt in om det är WPML
 
 		 //$dataLayer = json_encode(apply_filters('generoi/mu-plugin/gtm/datalayer', $dataLayer), JSON_UNESCAPED_UNICODE);
 		 // @TODO: use i18n
 
-		$settings = [];
-		$settings['FI'] = [ // @TODO -- fix this in GDS and then here...
-			'languageCode' => get_locale(),
-			'language' => get_locale(),
-
-			'buttonAcceptAll' => __('Approve all', 'wp-gds-cmp'),
-			'buttonEdit' => __('Edit cookies', 'wp-gds-cmp'),
-			'buttonAcceptSelected' => __('Approve chosen', 'wp-gds-cmp'),
-
-			'consents' => [
-				[
-					'id' => 'consent-necessary',
-					'label' => __('Necessary', 'wp-gds-cmp'),
-					'description' => __('These cookies are technically required for our core website to work properly, e.g. security functions or your cookie consent preferences.', 'wp-gds-cmp'),
-					'necessary' => true,
-					'consent' => true,
-				],
-				[
-					'id' => 'consent-statistics',
-					'label' => __('Statistics', 'wp-gds-cmp'),
-					'description' => __('In order to improve our website going forward, we anonymously collect data for statistical and analytical purposes. With these cookies we can, for instance, monitor the number or duration of visits of specific pages of our website helping us in optimizing user experience.', 'wp-gds-cmp'),
-					'necessary' => false,
-				],
-				[
-					'id' => 'consent-marketing',
-					'label' => __('Marketing', 'wp-gds-cmp'),
-					'description' => __('These cookies help us in measuring and optimizing our marketing efforts.', 'wp-gds-cmp'),
-					'necessary' => false,
-				],
-			]
-		];
-
-		 $consentSettings = esc_html(wp_json_encode($settings));
+		$consentSettings = esc_html(wp_json_encode($this->languagesArray));
 
 		$this->render_tag($gtm_id, $consentSettings);
 
@@ -140,7 +124,7 @@ class Wp_Gds_Cmp_Public {
 		}
 		</style>
 		<gds-consent-manager configs='<?= $consentSettings; ?>' language-navigation="true">
-			<gds-heading size='m' slot='headline' language='<?= get_locale(); ?>'><?= __('Cookie Settings', 'wp-gds-cmp'); ?></gds-heading>
+			<gds-heading size='m' slot='headline'><?= __('Cookie Settings', 'wp-gds-cmp'); ?></gds-heading>
 			<gds-paragraph size='s' slot='description'>
 			<?= __('Our site uses cookies in order for the site to function properly and for your user experience to be even better.', 'wp-gds-cmp'); ?>
 			<?= __('You can read more about them use and control their settings.', 'wp-gds-cmp'); ?>
