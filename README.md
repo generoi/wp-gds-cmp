@@ -8,6 +8,20 @@ This plugin embeds the [GDS Consent Manager](https://gds.generogrowth.com/master
 ## Requirements
 genero-design-system version 4.0.0-beta.16 or higher.
 
+## Filters
+### Add consents
+```sh
+add_filter( 'gds_cmp_consents', function($consents) {
+    $consents[] = [
+        'id' => 'my-new-consent',
+        'label' => __('My new consent', 'wp-gds-cmp'),
+        'description' => __('This is a description of my new consent.', 'wp-gds-cmp'),
+        'necessary' => false,
+    ];
+    return $consents;
+});
+```
+
 ## Screenshots
 
 ![Initial screen](assets/screenshot-1.png)
