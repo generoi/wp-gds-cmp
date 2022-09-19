@@ -124,7 +124,13 @@ class Wp_Gds_Cmp_Public {
 			]
 		];
 
-		 $consentSettings = esc_html(wp_json_encode($settings));
+        /*
+         *  @TODO: after adding support for other languages,
+         *  We can use whole array of settings
+         */
+        $settings['FI']['consents'] = apply_filters( 'gds_cmp_consents', $settings['FI']['consents']);
+
+		$consentSettings = esc_html(wp_json_encode($settings));
 
 		$this->render_tag($gtm_id, $consentSettings);
 
