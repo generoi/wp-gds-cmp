@@ -163,10 +163,10 @@ class Wp_Gds_Cmp_Public {
 		if (consentManager) {
 			// TCF v2 API present, now check if CMP is loaded
 			consentManager.addEventListener('consent', function(event) {
-				console.log(event)
+                console.log(event)
 				// Push consent data to dataLayer for easy access in GTM.
 				window.dataLayer.push({
-					consentSetting: event.detail.consent,
+					consentSetting: event.detail.setting,
 				})
 				// Now that we have all requred consent ready, we can finally load GTM.
 				loadGTM()
