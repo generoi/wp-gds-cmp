@@ -63,6 +63,10 @@ class Wp_Gds_Cmp_Public {
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp-gds-cmp-public.js', array( 'jquery' ), $this->version, false );
 	}
 
+	public function enqueue_styles() {
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wp-gds-cmp-public.css', array(), $this->version, 'all' );
+    }
+
 	/**
 	 * Override youtube embed blocks with no-cookie parameter
 	 *
@@ -129,7 +133,7 @@ class Wp_Gds_Cmp_Public {
          *  We can use whole array of settings
          */
         $settings['FI']['consents'] = apply_filters( 'gds_cmp_consents', $settings['FI']['consents']);
-
+        dump($settings);
 		$consentSettings = esc_html(wp_json_encode($settings));
 
 		$this->render_tag($gtm_id, $consentSettings);
@@ -145,13 +149,14 @@ class Wp_Gds_Cmp_Public {
 			display: none;
 		}
 		</style>
-		<gds-consent-manager configs='<?= $consentSettings; ?>' language-navigation="true">
-			<gds-heading size='m' slot='headline' language='<?= get_locale(); ?>'><?= __('Cookie Settings', 'wp-gds-cmp'); ?></gds-heading>
-			<gds-paragraph size='s' slot='description'>
+		<div id="genero-consent" configs='<?= $consentSettings; ?>'>
+			<h2><?= __('Cookie Settings', 'wp-gds-cmp'); ?></h2>
+			<p>
 			<?= __('Our site uses cookies in order for the site to function properly and for your user experience to be even better.', 'wp-gds-cmp'); ?>
 			<?= __('You can read more about them use and control their settings.', 'wp-gds-cmp'); ?>
-			</gds-paragraph>
-		</gds-consent-manager>
+            </p>
+            <div class="consent-list"></div>
+        </div>
 		<!-- Google Tag Manager -->
 		<script>
 		window.dataLayer = window.dataLayer || []

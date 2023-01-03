@@ -170,6 +170,8 @@ class Wp_Gds_Cmp {
 
 		$plugin_public = new Wp_Gds_Cmp_Public( $this->get_plugin_name(), $this->get_version() );
 
+		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
+		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 		$this->loader->add_filter( 'render_block', $plugin_public, 'override_youtube_embeds', 10, 2 );
 		$this->loader->add_action( 'wp_body_open', $plugin_public, 'render_tags' );
 

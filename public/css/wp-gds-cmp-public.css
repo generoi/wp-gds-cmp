@@ -2,3 +2,9 @@
  * All of the CSS for your public-facing functionality should be
  * included in this file.
  */
+
+#genero-consent li p.expanded {
+  display: block;
+  max-height: 1000px;
+  transition: max-height 0.5s ease-out;
+}
