@@ -157,25 +157,23 @@ class Wp_Gds_Cmp_Public {
 		window.dataLayer = window.dataLayer || []
 		// window.dataLayer = dataLayer
 		;(function() {
-		function loadGTM() {
-			console.log('loadGTM exec');
-			(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-			new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-			})(window,document,'script','dataLayer','<?= $gtm_id; ?>');
-		}
 		var consentManager = document.querySelector('gds-consent-manager')
 		if (consentManager) {
 			// TCF v2 API present, now check if CMP is loaded
 			consentManager.addEventListener('consent', function(event) {
-                console.log(event)
 				// Push consent data to dataLayer for easy access in GTM.
 				window.dataLayer.push({
 					consentSetting: event.detail.setting,
 				})
-				// Now that we have all requred consent ready, we can finally load GTM.
-				loadGTM()
+
+                <?php if(!function_exists('gtm4wp_wp_header_begin')): ?>
+                    // Now that we have all requred consent ready, we can finally load GTM.
+                    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                    })(window,document,'script','dataLayer','<?= $gtm_id; ?>');
+                <?php endif; ?>
 			})
 		}
 		})()
