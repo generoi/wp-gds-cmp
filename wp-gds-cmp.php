@@ -17,7 +17,7 @@
  * Plugin URI:        https://github.com/generoi/wp-gds-cmp
  * Description:       Adds the gds-consent-manager tag used in Genero Design system for managing cookie consent. Requires Gds 4.0.0-beta.16 or higher
 
- * Version:           1.0.0
+ * Version:           1.0.3
  * Author:            Genero
  * Author URI:        https://generogrowth.com/
  * License:           GPL-2.0+
@@ -36,7 +36,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'WP_GDS_CMP_VERSION', '1.0.0' );
+define( 'WP_GDS_CMP_VERSION', '1.0.3' );
 
 /**
  * The code that runs during plugin activation.

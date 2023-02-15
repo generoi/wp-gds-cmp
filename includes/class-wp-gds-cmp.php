@@ -70,7 +70,7 @@ class Wp_Gds_Cmp {
 		if ( defined( 'WP_GDS_CMP_VERSION' ) ) {
 			$this->version = WP_GDS_CMP_VERSION;
 		} else {
-			$this->version = '1.0.0';
+			$this->version = '1.0.3';
 		}
 		$this->plugin_name = 'wp-gds-cmp';
 
