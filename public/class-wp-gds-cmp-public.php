@@ -164,7 +164,7 @@ class Wp_Gds_Cmp_Public {
 				// Push consent data to dataLayer for easy access in GTM.
 				window.dataLayer.push({
 					consentSetting: event.detail.setting,
-				})
+				});
 
                 <?php if(!function_exists('gtm4wp_wp_header_begin')): ?>
                     // Now that we have all requred consent ready, we can finally load GTM.
